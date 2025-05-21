@@ -8,6 +8,8 @@ public class RoomNodeGraphEditor : EditorWindow
     private static RoomNodeGraphSO currentRoomNodeGraph;
     private RoomNodeTypeListSO roomNodeTypeList;
 
+    private RoomNodeSO currentRoomNode = null;
+
     //Node layout values
     private const float nodeWidth = 160f;
     private const float nodeHeight = 75f;
@@ -67,8 +69,37 @@ public class RoomNodeGraphEditor : EditorWindow
     }
 
     private void ProcessEvents(Event currentEvent)
+    {   
+        //Get room node that mouse is over if it's null or not currently being dragged
+        if (currentRoomNode == null || currentRoomNode.isLeftClickDragging == false)
+        {
+            currentRoomNode = IsMouseOverRoomNode(currentEvent);
+        }
+
+        //If mouse isn't over a room node
+        if (currentRoomNode == null)
+        {
+            ProcessRoomNodeGraphEvents(currentEvent);
+        }
+        // Else process room node events
+        else
+        {
+            currentRoomNode.ProcessEvents(currentEvent);
+        }
+        
+    }
+
+    //Check if the mouse is over a room node, if so then return the room node else return null
+    private RoomNodeSO IsMouseOverRoomNode(Event currentEvent)
     {
-        ProcessRoomNodeGraphEvents(currentEvent);
+        for (int i = currentRoomNodeGraph.roomNodeList.Count - 1; i >= 0; i--)
+        {
+            if (currentRoomNodeGraph.roomNodeList[i].rect.Contains(currentEvent.mousePosition))
+            {
+                return currentRoomNodeGraph.roomNodeList[i];
+            }
+        }
+        return null;
     }
 
     //Process Room Node Graph Events
