@@ -16,14 +16,16 @@ MonoBehaviour:
   parentRoomNodeIDList: []
   childRoomNodeIDList: []
   roomNodeGraph: {fileID: 11400000}
-  roomNodeType: {fileID: 11400000, guid: efe26e2c996c6c4438042e4d6defc548, type: 2}
+  roomNodeType: {fileID: 11400000, guid: f1236c3d4f17e054b97c3354e911e100, type: 2}
   roomNodeTypeList: {fileID: 11400000, guid: b3a9d08694707994491b33177c046b04, type: 2}
   rect:
     serializedVersion: 2
-    x: 920
-    y: 391
+    x: 248
+    y: 244
     width: 160
     height: 75
+  isLeftClickDragging: 0
+  isSelected: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
